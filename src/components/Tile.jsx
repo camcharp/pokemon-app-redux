@@ -81,7 +81,9 @@ export default class Tile extends Component {
 						<div className="face back">
 							<div className="img-back">
 								<img src={pokemon.sprites.front_default} alt="pokemon-sprite" />
-								<img src={pokemon.sprites.back_default} alt="pokemon-sprite-back" />
+								{pokemon.sprites.back_default ? (
+									<img src={pokemon.sprites.back_default} alt="pokemon-sprite-back" />
+								) : null}
 							</div>
 							<h1 className="pokemon-name">{pokemon.name}</h1>
 							<p className="pokemon-type">{pokemon.types[0].type.name} </p>

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 // redux
 import { connect } from 'react-redux';
 import { getPokemons } from '../actions/boardActions';
-// import { addPokemons, likePokemons, setNextPokemons, setPreviousPokemons, changeView } from '../js/actions/index';
 
 // components
 import Header from './Header';

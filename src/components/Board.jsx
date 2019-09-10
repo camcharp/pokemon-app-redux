@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 // redux
 import { connect } from 'react-redux';
@@ -23,14 +22,6 @@ class Board extends Component {
 		};
 	}
 
-	// getNewPokemons = (res) => {
-	// 	this.setState({
-	// 		pokemons: res.data.results,
-	// 		next: res.data.next,
-	// 		previous: res.data.previous
-	// 	});
-	// };
-
 	goToPokemonsPage = (e) => {
 		e.preventDefault();
 		this.setState({ view: 1 });
@@ -40,18 +31,6 @@ class Board extends Component {
 		e.preventDefault();
 		this.setState({ view: 2 });
 	};
-
-	handlePreviousClick = (e) => {
-		e.preventDefault();
-		axios.get(this.state.previous).then((res) => this.getNewPokemons(res));
-		this.setState({ state: this.state });
-	};
-
-	// handleNextClick = (e) => {
-	// 	e.preventDefault();
-	// 	axios.get(this.props.next).then((res) => this.props.getNextPokemons(res));
-	// 	this.setState({ state: this.state });
-	// };
 
 	addFavouritePokemon = (e, pokemon) => {
 		e.preventDefault();

@@ -9,10 +9,16 @@ class Pagination extends Component {
 			<React.Fragment>
 				<div className="center">
 					<div className="pagination">
-						<button className="previous" onClick={() => this.props.getNewPokemons(this.props.previous)}>
+						<button
+							className="pagination-btn previous"
+							onClick={() => this.props.getNewPokemons(this.props.previous)}
+						>
 							&laquo; Previous Pokemons
 						</button>
-						<button className="next" onClick={() => this.props.getNewPokemons(this.props.next)}>
+						<button
+							className="pagination-btn next"
+							onClick={() => this.props.getNewPokemons(this.props.next)}
+						>
 							Next Pokemons &raquo;
 						</button>
 					</div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // redux
 import { connect } from 'react-redux';
-import { getPokemons } from '../actions/boardActions';
+import { getPokemons } from '../actions/actions';
 
 // components
 import Header from './Header';
@@ -17,19 +17,19 @@ class Board extends Component {
 			likedPokemons: [],
 			next: null,
 			previous: null,
-			view: 1 // "page" Pokemons:1, "page" Favoris:2
+			view: 1 //vue Pokemons:1, vue Favoris:2
 		};
 	}
 
-	goToPokemonsPage = (e) => {
-		e.preventDefault();
-		this.setState({ view: 1 });
-	};
+	// goToPokemonsPage = (e) => {
+	// 	e.preventDefault();
+	// 	this.setState({ view: 1 });
+	// };
 
-	goToFavouritesPage = (e) => {
-		e.preventDefault();
-		this.setState({ view: 2 });
-	};
+	// goToFavouritesPage = (e) => {
+	// 	e.preventDefault();
+	// 	this.setState({ view: 2 });
+	// };
 
 	addFavouritePokemon = (e, pokemon) => {
 		e.preventDefault();
@@ -57,7 +57,7 @@ class Board extends Component {
 		return (
 			<div className="page-wrapper">
 				<Header goToPokemonsPage={this.goToPokemonsPage} goToFavouritesPage={this.goToFavouritesPage} />
-				{this.state.view === 1 &&
+				{this.props.view === 1 &&
 				this.props.pokemons && (
 					<Pagination
 						data={this.state}
@@ -67,7 +67,7 @@ class Board extends Component {
 				)}
 				<div className="big-container">
 					{/* Page Pokemons */}
-					{this.state.view === 1 &&
+					{this.props.view === 1 &&
 						this.props.pokemons &&
 						this.props.pokemons.map((pokemon) => (
 							<Tile
@@ -79,7 +79,7 @@ class Board extends Component {
 							/>
 						))}
 					{/* Page Favoris */}
-					{this.state.view === 2 &&
+					{this.props.view === 2 &&
 						this.state.likedPokemons &&
 						this.state.likedPokemons.map((pokemon) => (
 							<TileFavourite
@@ -91,12 +91,12 @@ class Board extends Component {
 							/>
 						))}
 					{/* Page Favoris si l'utilisateur n'a pas encore mis de Pokemon en favori */}
-					{this.state.view === 2 &&
+					{this.props.view === 2 &&
 					this.state.likedPokemons.length === 0 && (
 						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
 					)}
 				</div>
-				{this.state.view === 1 && (
+				{this.props.view === 1 && (
 					<Pagination
 						data={this.state}
 						handlePreviousClick={this.handlePreviousClick}
@@ -110,7 +110,8 @@ class Board extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		pokemons: state.pokemons
+		pokemons: state.pokemons,
+		view: state.view
 	};
 };
 

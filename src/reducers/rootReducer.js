@@ -1,78 +1,6 @@
-// import { FETCH_POKEMONS_PENDING, FETCH_POKEMONS_SUCCESS, FETCH_POKEMONS_ERROR } from '../actions/boardActions';
-
-// const initState = {
-// 	pending: false,
-// 	pokemons: [],
-// 	error: null
-// };
-
-// export default function pokemonsReducer(state = initState, action) {
-// 	switch (action.type) {
-// 		case FETCH_POKEMONS_PENDING:
-// 			return {
-// 				...state,
-// 				pending: true
-// 			};
-// 		case FETCH_POKEMONS_SUCCESS:
-// 			return {
-// 				...state,
-// 				pending: false,
-// 				pokemons: action.payload
-// 			};
-// 		case FETCH_POKEMONS_ERROR:
-// 			return {
-// 				...state,
-// 				pending: false,
-// 				error: action.error
-// 			};
-// 		default:
-// 			return state;
-// 	}
-// }
-
-// export const getPokemons = (state) => state.pokemons;
-// export const getPokemonsPending = (state) => state.pending;
-// export const getPokemonsError = (state) => state.error;
-
-// /////////////////////////////////////////////////////////
-
-// const initState = {
-// 	pokemons: [],
-// 	loading: false,
-// 	error: null
-// };
-
-// const rootReducer = (state = initState, action) => {
-// 	switch (action.type) {
-// 		case FETCH_POKEMONS_PENDING:
-// 			return {
-// 				...state,
-// 				loading: true
-// 			};
-// 		case FETCH_POKEMONS_SUCCESS:
-// 			return {
-// 				...state,
-// 				pokemons: action.payload
-// 			};
-// 		case FETCH_POKEMONS_ERROR:
-// 			return {
-// 				...state,
-// 				error: 'An error occurred while getting data.'
-// 			};
-// 		default:
-// 			return state;
-// 	}
-// };
-
-// export default rootReducer;
-
-// /////////////////////////////////////////////////////////
-
 const initState = {
-	pokemons: [
-		{ name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' },
-		{ name: 'ivysaur', url: 'https://pokeapi.co/api/v2/pokemon/2/' }
-	]
+	pokemons: [],
+	view: 1
 };
 
 const rootReducer = (state = initState, action) => {
@@ -93,13 +21,19 @@ const rootReducer = (state = initState, action) => {
 				next: action.next,
 				previous: action.previous
 			};
+		case 'GO_TO_POKEMONS':
+			return {
+				...state,
+				view: 1
+			};
+		case 'GO_TO_FAVOURITES':
+			return {
+				...state,
+				view: 2
+			};
 		default:
 			return state;
 	}
 };
-
-// const rootReducer = (state = initState, action) => {
-// 	return state;
-// };
 
 export default rootReducer;

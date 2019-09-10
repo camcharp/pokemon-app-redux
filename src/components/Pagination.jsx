@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getNewPokemons } from '../actions/boardActions';
+import { getNewPokemons } from '../actions/actions';
 
 class Pagination extends Component {
 	render() {

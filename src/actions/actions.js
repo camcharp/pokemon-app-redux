@@ -11,7 +11,6 @@ export const getPokemons = () => {
 				next: res.data.next,
 				previous: res.data.previous
 			});
-			console.log(res.data.results);
 			console.log('current state:', getState());
 		});
 	};
@@ -27,17 +26,19 @@ export const getNewPokemons = (url) => {
 				next: res.data.next,
 				previous: res.data.previous
 			});
-			console.log(res.data.results);
 			console.log('current state:', getState());
 		});
 	};
 };
 
-export const likePokemon = () => {
+export const likePokemon = (pokemon, newLikedPokemons) => {
 	return (dispatch, getState) => {
 		dispatch({
-			type: 'LIKE_POKEMON'
+			type: 'LIKE_POKEMON',
+			likedPokemons: newLikedPokemons,
+			pokemon: pokemon
 		});
+		console.log(newLikedPokemons);
 		console.log('current state:', getState());
 	};
 };
@@ -48,7 +49,6 @@ export const goToPagePokemons = () => {
 			type: 'GO_TO_POKEMONS',
 			view: 1
 		});
-		console.log('current state:', getState());
 	};
 };
 
@@ -58,6 +58,5 @@ export const goToPageFavourites = () => {
 			type: 'GO_TO_FAVOURITES',
 			view: 2
 		});
-		console.log('current state:', getState());
 	};
 };

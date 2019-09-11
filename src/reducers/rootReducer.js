@@ -23,8 +23,9 @@ const rootReducer = (state = initState, action) => {
 				previous: action.previous
 			};
 		case 'LIKE_POKEMON':
+			console.log('like pokemon', action)
 			return Object.assign({}, state, {
-				likedPokemons: state.likedPokemons.concat(action.payload)
+				likedPokemons: action.likedPokemons
 			});
 		case 'GO_TO_POKEMONS':
 			return {

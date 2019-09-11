@@ -14,27 +14,9 @@ class Board extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			likedPokemons: [],
+			likedPokemons: []
 		};
 	}
-
-	addFavouritePokemon = (e, pokemon) => {
-		e.preventDefault();
-		const likedPokemonsCopy = [ ...this.state.likedPokemons ];
-		if (!likedPokemonsCopy.some((p) => p.name === pokemon.name)) likedPokemonsCopy.push(pokemon);
-		this.setState({ likedPokemons: likedPokemonsCopy });
-	};
-
-	removeFavouritePokemon = (e, pokemon) => {
-		e.preventDefault();
-		let likedPokemonsCopy = [ ...this.state.likedPokemons ];
-		for (let i = 0; i < likedPokemonsCopy.length; i++) {
-			if (likedPokemonsCopy[i].name === pokemon.name) {
-				likedPokemonsCopy.splice(likedPokemonsCopy[i], 1);
-			}
-		}
-		this.setState({ likedPokemons: likedPokemonsCopy });
-	};
 
 	componentDidMount() {
 		this.props.getPokemons();
@@ -43,22 +25,15 @@ class Board extends Component {
 	render() {
 		return (
 			<div className="page-wrapper">
-				<Header goToPokemonsPage={this.goToPokemonsPage} goToFavouritesPage={this.goToFavouritesPage} />
-				{this.props.view === 1 &&
-				this.props.pokemons && (
-					<Pagination
-						data={this.state}
-						handlePreviousClick={this.handlePreviousClick}
-						handleNextClick={this.handleNextClick}
-					/>
-				)}
+				<Header />
+				{this.props.view === 1 && this.props.pokemons && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}
 					{this.props.view === 1 &&
 						this.props.pokemons &&
 						this.props.pokemons.map((pokemon) => (
 							<Tile
-								likedPokemons={this.state.likedPokemons}
+								likedPokemons={this.props.likedPokemons}
 								key={pokemon.url}
 								data={pokemon}
 								addFavouritePokemon={this.addFavouritePokemon}
@@ -67,10 +42,10 @@ class Board extends Component {
 						))}
 					{/* Page Favoris */}
 					{this.props.view === 2 &&
-						this.state.likedPokemons &&
-						this.state.likedPokemons.map((pokemon) => (
+						this.props.likedPokemons &&
+						this.props.likedPokemons.map((pokemon) => (
 							<TileFavourite
-								likedPokemons={this.state.likedPokemons}
+								likedPokemons={this.props.likedPokemons}
 								key={pokemon.name}
 								data={pokemon}
 								addFavouritePokemon={this.addFavouritePokemon}
@@ -79,17 +54,11 @@ class Board extends Component {
 						))}
 					{/* Page Favoris si l'utilisateur n'a pas encore mis de Pokemon en favori */}
 					{this.props.view === 2 &&
-					this.state.likedPokemons.length === 0 && (
+					this.props.likedPokemons.length === 0 && (
 						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
 					)}
 				</div>
-				{this.props.view === 1 && (
-					<Pagination
-						data={this.state}
-						handlePreviousClick={this.handlePreviousClick}
-						handleNextClick={this.handleNextClick}
-					/>
-				)}
+				{this.props.view === 1 && <Pagination />}
 			</div>
 		);
 	}
@@ -104,7 +73,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return { getPokemons: () => dispatch(getPokemons()) };
+	return {
+		getPokemons: () => dispatch(getPokemons())
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

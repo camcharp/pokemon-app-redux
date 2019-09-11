@@ -36,13 +36,41 @@ class Tile extends Component {
 		else this.setState({ cardClasses: [ 'card' ] });
 	}
 
+	// addFavouritePokemon = (e, pokemon) => {
+	// 	e.preventDefault();
+	// 	const likedPokemonsCopy = [ ...this.state.likedPokemons ];
+	// 	if (!likedPokemonsCopy.some((p) => p.name === pokemon.name)) likedPokemonsCopy.push(pokemon);
+	// 	this.setState({ likedPokemons: likedPokemonsCopy });
+	// };
+
+	addFavouritePokemon = (e, pokemon) => {
+		e.preventDefault();
+		const likedPokemonsCopy = [ ...this.props.likedPokemons ];
+		if (!this.props.likedPokemons.some((p) => p.name === pokemon.name)) {
+			likedPokemonsCopy.push(pokemon);
+			console.log(likedPokemonsCopy);
+			this.props.likePokemon(pokemon, likedPokemonsCopy);
+		}
+	};
+
+	removeFavouritePokemon = (e, pokemon) => {
+		e.preventDefault();
+		let likedPokemonsCopy = [ ...this.state.likedPokemons ];
+		for (let i = 0; i < likedPokemonsCopy.length; i++) {
+			if (likedPokemonsCopy[i].name === pokemon.name) {
+				likedPokemonsCopy.splice(likedPokemonsCopy[i], 1);
+			}
+		}
+		this.setState({ likedPokemons: likedPokemonsCopy });
+	};
+
 	// ajouter/enlèver le statut "favori"
 	handleFavourite = (e) => {
 		if (this.state.liked) {
-			this.props.removeFavouritePokemon(e, this.state.pokemon);
+			this.removeFavouritePokemon(e, this.state.pokemon);
 			this.setState({ liked: false });
 		} else {
-			this.props.addFavouritePokemon(e, this.state.pokemon);
+			this.addFavouritePokemon(e, this.state.pokemon);
 			if (!this.state.liked) this.setState({ liked: true });
 		}
 	};
@@ -61,7 +89,7 @@ class Tile extends Component {
 			<div className="card-plus-heart">
 				{/* coeur différent si le Pokemon est en favori ou non */}
 				{this.state.liked ? (
-					<i className="fa fa-heart fa-sm" onClick={this.props.likePokemon} />
+					<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
 				) : (
 					<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
 				)}
@@ -111,12 +139,13 @@ class Tile extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		likePokemon: state.likePokemon
+		pokemons: state.pokemons,
+		likedPokemon: state.likedPokemon
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return { likePokemon: () => dispatch(likePokemon()) };
+	return { likePokemon: (pokemon, newLikedPokemons) => dispatch(likePokemon(pokemon, newLikedPokemons)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tile);

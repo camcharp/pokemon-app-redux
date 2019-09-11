@@ -11,12 +11,6 @@ import Tile from './Tile';
 import TileFavourite from './TileFavourite';
 
 class Board extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			likedPokemons: []
-		};
-	}
 
 	componentDidMount() {
 		this.props.getPokemons();

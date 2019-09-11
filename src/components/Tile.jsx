@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // redux
 import { connect } from 'react-redux';
-import { likePokemon } from '../actions/actions';
+import { likePokemon, dislikePokemon } from '../actions/actions';
 
 class Tile extends Component {
 	constructor(props) {
@@ -14,15 +14,12 @@ class Tile extends Component {
 			liked: false, // mis en favori ?
 			cardClasses: [ 'card' ]
 		};
-		this.flipCard = this.flipCard.bind(this);
-		this.handleFavourite = this.handleFavourite.bind(this);
 	}
 
 	// vérifier si le Pokemon a été mis en favori
 	checkIfPokemonIsLiked(pokemon) {
-		const pokemonsFavourited = this.props.likedPokemons;
 		if (
-			pokemonsFavourited.find((poke) => {
+			this.props.likedPokemons.find((poke) => {
 				return poke.name === pokemon.name;
 			})
 		)
@@ -30,38 +27,10 @@ class Tile extends Component {
 	}
 
 	// ajouter une classe quand la carte est retournée, pour l'effet
-	flipCard() {
+	flipCard = () => {
 		this.setState({ frontCard: !this.state.frontCard });
 		if (this.state.frontCard === true) this.setState({ cardClasses: [ 'card', 'flipped' ] });
 		else this.setState({ cardClasses: [ 'card' ] });
-	}
-
-	// addFavouritePokemon = (e, pokemon) => {
-	// 	e.preventDefault();
-	// 	const likedPokemonsCopy = [ ...this.state.likedPokemons ];
-	// 	if (!likedPokemonsCopy.some((p) => p.name === pokemon.name)) likedPokemonsCopy.push(pokemon);
-	// 	this.setState({ likedPokemons: likedPokemonsCopy });
-	// };
-
-	addFavouritePokemon = (e, pokemon) => {
-		e.preventDefault();
-		const likedPokemonsCopy = [ ...this.props.likedPokemons ];
-		if (!this.props.likedPokemons.some((p) => p.name === pokemon.name)) {
-			likedPokemonsCopy.push(pokemon);
-			console.log(likedPokemonsCopy);
-			this.props.likePokemon(pokemon, likedPokemonsCopy);
-		}
-	};
-
-	removeFavouritePokemon = (e, pokemon) => {
-		e.preventDefault();
-		let likedPokemonsCopy = [ ...this.state.likedPokemons ];
-		for (let i = 0; i < likedPokemonsCopy.length; i++) {
-			if (likedPokemonsCopy[i].name === pokemon.name) {
-				likedPokemonsCopy.splice(likedPokemonsCopy[i], 1);
-			}
-		}
-		this.setState({ likedPokemons: likedPokemonsCopy });
 	};
 
 	// ajouter/enlèver le statut "favori"
@@ -73,6 +42,20 @@ class Tile extends Component {
 			this.addFavouritePokemon(e, this.state.pokemon);
 			if (!this.state.liked) this.setState({ liked: true });
 		}
+	};
+
+	addFavouritePokemon = (e, pokemon) => {
+		e.preventDefault();
+		const likedPokemonsCopy = [ ...this.props.likedPokemons ];
+		if (!this.props.likedPokemons.some((p) => p.name === pokemon.name)) {
+			likedPokemonsCopy.push(pokemon);
+			this.props.likePokemon(pokemon, likedPokemonsCopy);
+		}
+	};
+
+	removeFavouritePokemon = (e, pokemon) => {
+		e.preventDefault();
+		this.props.dislikePokemon(pokemon);
 	};
 
 	componentDidMount() {
@@ -145,7 +128,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return { likePokemon: (pokemon, newLikedPokemons) => dispatch(likePokemon(pokemon, newLikedPokemons)) };
+	return {
+		likePokemon: (pokemon, newLikedPokemons) => dispatch(likePokemon(pokemon, newLikedPokemons)),
+		dislikePokemon: (pokemon) => dispatch(dislikePokemon(pokemon))
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tile);

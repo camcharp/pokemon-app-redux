@@ -23,10 +23,15 @@ const rootReducer = (state = initState, action) => {
 				previous: action.previous
 			};
 		case 'LIKE_POKEMON':
-			console.log('like pokemon', action)
 			return Object.assign({}, state, {
 				likedPokemons: action.likedPokemons
 			});
+		case 'DISLIKE_POKEMON':
+			console.log('dislike pokemon', action.pokemon.name);
+			return {
+				...state,
+				likedPokemons: state.likedPokemons.filter(pokemon => pokemon.name !== action.pokemon.name),
+			}
 		case 'GO_TO_POKEMONS':
 			return {
 				...state,

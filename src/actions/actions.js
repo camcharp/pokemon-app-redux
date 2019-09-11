@@ -43,6 +43,17 @@ export const likePokemon = (pokemon, newLikedPokemons) => {
 	};
 };
 
+export const dislikePokemon = (pokemon) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'DISLIKE_POKEMON',
+			pokemon
+		});
+		console.log(pokemon);
+		console.log('current state:', getState());
+	};
+};
+
 export const goToPagePokemons = () => {
 	return (dispatch, getState) => {
 		dispatch({

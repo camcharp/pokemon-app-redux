@@ -1,4 +1,4 @@
-Welcome on the Pokemon App ! 
+Welcome on the Pokemon App, created with React + Redux.
 
 - This app displays Pokemons from https://pokeapi.co/api/v2/pokemon.
 - To see more info about the Pokemon, just click on its card.
@@ -6,7 +6,7 @@ Welcome on the Pokemon App !
 - To see your favourites, just click on "Favourites Pokemons".
 
 ## Deployed App
-- To see the deployed project, just go here: https://condescending-allen-0ad4bf.netlify.com/
+- To see the deployed project, just go here: https://pokemon-app-redux.netlify.com
 - Or in the project directory, you can run:
 
 ### `npm start`

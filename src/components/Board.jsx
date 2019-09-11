@@ -23,6 +23,7 @@ class Board extends Component {
 				{this.props.view === 1 && this.props.pokemons && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}
+					{this.props.pokemons.length < 20 && <h1>Loading...</h1>}
 					{this.props.view === 1 &&
 						this.props.pokemons &&
 						this.props.pokemons.map((pokemon) => (

@@ -7,6 +7,10 @@
 	color: inherit;
 }
 
+.body {
+	width:100%;
+}
+
 .fa {
 	cursor: pointer;
 	font-size: 1.5rem;
@@ -155,15 +159,23 @@ button:focus {
 /*           HEADER              */
 .header {
 	background-color: indianred;
+	width: 100%;
+	font-size: 1rem;
 	padding: 1%;
 	margin-bottom: 5%;
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
+	align-content: center;
 }
+/* 
+@media (max-width: 640px) {
+	.header {
+		flex-direction: column;
+	}
+} */
 
 .header h2 {
 	color: white;
-	width: 200px;
-	padding: 5% 1%;
+	width: 100%;
+	padding: 12px 10px;
 }

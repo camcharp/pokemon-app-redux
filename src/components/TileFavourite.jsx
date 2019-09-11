@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
-export default class TileFavourite extends Component {
+// redux
+import { connect } from 'react-redux';
+import { dislikePokemon } from '../actions/actions';
+
+class TileFavourite extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			pokemon: [], // pokemon de la carte
 			frontCard: true,
+			liked: true,
 			cardClasses: [ 'card' ]
 		};
 		this.flipCard = this.flipCard.bind(this);
@@ -17,6 +22,16 @@ export default class TileFavourite extends Component {
 		else this.setState({ cardClasses: [ 'card' ] });
 	}
 
+	handleFavourite = (e) => {
+		this.removeFavouritePokemon(e, this.state.pokemon);
+		this.setState({ liked: false });
+	};
+
+	removeFavouritePokemon = (e, pokemon) => {
+		e.preventDefault();
+		this.props.dislikePokemon(pokemon);
+	};
+
 	componentDidMount() {
 		this.setState({ pokemon: this.props.data });
 	}
@@ -26,6 +41,11 @@ export default class TileFavourite extends Component {
 		let cardClasses = this.state.cardClasses.join(' ');
 		return (
 			<div className="card-plus-heart">
+				{this.state.liked ? ( // coeur différent si le Pokemon est en favori ou non
+					<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
+				) : (
+					<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
+				)}
 				<div className={cardClasses} onClick={this.flipCard}>
 					{/* carte vue de face + vérifier que les informations sont chargées */}
 					{pokemon.sprites &&
@@ -66,3 +86,17 @@ export default class TileFavourite extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		likedPokemon: state.likedPokemon
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		dislikePokemon: (pokemon) => dispatch(dislikePokemon(pokemon))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TileFavourite);

@@ -15,7 +15,7 @@ export const getPokemons = () => {
 	};
 };
 
-// appel quand l'utilisateur clique sur "previous" ou "next"
+// aller chercher les pokemons suivants/précédents
 export const getNewPokemons = (url) => {
 	return (dispatch) => {
 		axios.get(url).then((res) => {
@@ -29,6 +29,7 @@ export const getNewPokemons = (url) => {
 	};
 };
 
+// ajouter un pokemon aux favoris
 export const likePokemon = (pokemon, newLikedPokemons) => {
 	return (dispatch) => {
 		dispatch({
@@ -39,6 +40,7 @@ export const likePokemon = (pokemon, newLikedPokemons) => {
 	};
 };
 
+// enlever un pokemon des favoris
 export const dislikePokemon = (pokemon) => {
 	return (dispatch) => {
 		dispatch({
@@ -48,6 +50,7 @@ export const dislikePokemon = (pokemon) => {
 	};
 };
 
+// aller à la page pokemons
 export const goToPagePokemons = () => {
 	return (dispatch) => {
 		dispatch({
@@ -57,6 +60,7 @@ export const goToPagePokemons = () => {
 	};
 };
 
+// aller à la page favoris
 export const goToPageFavourites = () => {
 	return (dispatch) => {
 		dispatch({

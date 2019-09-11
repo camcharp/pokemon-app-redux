@@ -70,16 +70,14 @@ class Tile extends Component {
 		let cardClasses = this.state.cardClasses.join(' ');
 		return (
 			<div className="card-plus-heart">
-				{/* coeur différent si le Pokemon est en favori ou non */}
-				{this.state.liked ? (
+				{this.state.liked ? ( // coeur différent si le Pokemon est en favori ou non
 					<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
 				) : (
 					<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
 				)}
 
 				<div className={cardClasses} onClick={this.flipCard}>
-					{/* vérifier que toutes les infos soient chargées */}
-					{pokemon.sprites &&
+					{pokemon.sprites && // vérifier que toutes les infos soient chargées
 					pokemon.types &&
 					pokemon.stats &&
 					pokemon.moves &&

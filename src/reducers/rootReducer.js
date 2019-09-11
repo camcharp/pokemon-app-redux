@@ -7,7 +7,6 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 	switch (action.type) {
 		case 'FETCH_POKEMONS':
-			console.log('pokemons fetched', action);
 			return {
 				...state,
 				pokemons: action.pokemons,
@@ -15,7 +14,6 @@ const rootReducer = (state = initState, action) => {
 				previous: action.previous
 			};
 		case 'FETCH_NEW_POKEMONS':
-			console.log('new pokemons fetched', action);
 			return {
 				...state,
 				pokemons: action.pokemons,
@@ -27,11 +25,10 @@ const rootReducer = (state = initState, action) => {
 				likedPokemons: action.likedPokemons
 			});
 		case 'DISLIKE_POKEMON':
-			console.log('dislike pokemon', action.pokemon.name);
 			return {
 				...state,
-				likedPokemons: state.likedPokemons.filter(pokemon => pokemon.name !== action.pokemon.name),
-			}
+				likedPokemons: state.likedPokemons.filter((pokemon) => pokemon.name !== action.pokemon.name)
+			};
 		case 'GO_TO_POKEMONS':
 			return {
 				...state,

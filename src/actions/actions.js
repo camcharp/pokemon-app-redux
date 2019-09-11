@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // premier appel à l'API
 export const getPokemons = () => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20').then((res) => {
 			dispatch({
 				type: 'FETCH_POKEMONS',
@@ -11,14 +11,13 @@ export const getPokemons = () => {
 				next: res.data.next,
 				previous: res.data.previous
 			});
-			console.log('current state:', getState());
 		});
 	};
 };
 
 // appel quand l'utilisateur clique sur "previous" ou "next"
 export const getNewPokemons = (url) => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		axios.get(url).then((res) => {
 			dispatch({
 				type: 'FETCH_NEW_POKEMONS',
@@ -26,36 +25,31 @@ export const getNewPokemons = (url) => {
 				next: res.data.next,
 				previous: res.data.previous
 			});
-			console.log('current state:', getState());
 		});
 	};
 };
 
 export const likePokemon = (pokemon, newLikedPokemons) => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		dispatch({
 			type: 'LIKE_POKEMON',
 			likedPokemons: newLikedPokemons,
 			pokemon: pokemon
 		});
-		console.log(newLikedPokemons);
-		console.log('current state:', getState());
 	};
 };
 
 export const dislikePokemon = (pokemon) => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		dispatch({
 			type: 'DISLIKE_POKEMON',
 			pokemon
 		});
-		console.log(pokemon);
-		console.log('current state:', getState());
 	};
 };
 
 export const goToPagePokemons = () => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		dispatch({
 			type: 'GO_TO_POKEMONS',
 			view: 1
@@ -64,7 +58,7 @@ export const goToPagePokemons = () => {
 };
 
 export const goToPageFavourites = () => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		dispatch({
 			type: 'GO_TO_FAVOURITES',
 			view: 2

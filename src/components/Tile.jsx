@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class Tile extends Component {
+// redux
+import { connect } from 'react-redux';
+import { likePokemon } from '../actions/actions';
+
+class Tile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -57,7 +61,7 @@ export default class Tile extends Component {
 			<div className="card-plus-heart">
 				{/* coeur différent si le Pokemon est en favori ou non */}
 				{this.state.liked ? (
-					<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
+					<i className="fa fa-heart fa-sm" onClick={this.props.likePokemon} />
 				) : (
 					<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
 				)}
@@ -104,3 +108,15 @@ export default class Tile extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		likePokemon: state.likePokemon
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return { likePokemon: () => dispatch(likePokemon()) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tile);

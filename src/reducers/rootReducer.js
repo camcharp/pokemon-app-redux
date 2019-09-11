@@ -1,5 +1,6 @@
 const initState = {
 	pokemons: [],
+	likedPokemons: [],
 	view: 1
 };
 
@@ -21,6 +22,10 @@ const rootReducer = (state = initState, action) => {
 				next: action.next,
 				previous: action.previous
 			};
+		case 'LIKE_POKEMON':
+			return Object.assign({}, state, {
+				likedPokemons: state.likedPokemons.concat(action.payload)
+			});
 		case 'GO_TO_POKEMONS':
 			return {
 				...state,

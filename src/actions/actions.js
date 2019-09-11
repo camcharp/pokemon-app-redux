@@ -33,22 +33,31 @@ export const getNewPokemons = (url) => {
 	};
 };
 
+export const likePokemon = () => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'LIKE_POKEMON'
+		});
+		console.log('current state:', getState());
+	};
+};
+
 export const goToPagePokemons = () => {
 	return (dispatch, getState) => {
-			dispatch({
-				type: 'GO_TO_POKEMONS',
-				view: 1
-			});
-			console.log('current state:', getState());
+		dispatch({
+			type: 'GO_TO_POKEMONS',
+			view: 1
+		});
+		console.log('current state:', getState());
 	};
 };
 
 export const goToPageFavourites = () => {
 	return (dispatch, getState) => {
-			dispatch({
-				type: 'GO_TO_FAVOURITES',
-				view: 2
-			});
-			console.log('current state:', getState());
+		dispatch({
+			type: 'GO_TO_FAVOURITES',
+			view: 2
+		});
+		console.log('current state:', getState());
 	};
 };

@@ -15,21 +15,8 @@ class Board extends Component {
 		super(props);
 		this.state = {
 			likedPokemons: [],
-			next: null,
-			previous: null,
-			view: 1 //vue Pokemons:1, vue Favoris:2
 		};
 	}
-
-	// goToPokemonsPage = (e) => {
-	// 	e.preventDefault();
-	// 	this.setState({ view: 1 });
-	// };
-
-	// goToFavouritesPage = (e) => {
-	// 	e.preventDefault();
-	// 	this.setState({ view: 2 });
-	// };
 
 	addFavouritePokemon = (e, pokemon) => {
 		e.preventDefault();
@@ -111,6 +98,7 @@ class Board extends Component {
 const mapStateToProps = (state) => {
 	return {
 		pokemons: state.pokemons,
+		likedPokemons: state.likedPokemons,
 		view: state.view
 	};
 };

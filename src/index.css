@@ -48,18 +48,20 @@
 	border-radius: 15px;
 	cursor: pointer;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	transition: transform .7s;
+	transition: .7s;
 	transform-style: preserve-3d;
 	position: relative;
 	margin: 1%;
+	padding: 3px;
 }
 
 .card:hover {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
 }
 
 .card.flipped {
 	transform: rotateY(180deg);
+	padding: 3px;
 }
 
 .face {

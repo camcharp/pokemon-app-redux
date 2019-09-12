@@ -7,7 +7,6 @@ export const getPokemons = () => {
 			dispatch({
 				type: 'FETCH_POKEMONS',
 				pokemons: res.data.results,
-				likedPokemons: [],
 				next: res.data.next,
 				previous: res.data.previous
 			});
@@ -35,7 +34,7 @@ export const likePokemon = (pokemon, newLikedPokemons) => {
 		dispatch({
 			type: 'LIKE_POKEMON',
 			likedPokemons: newLikedPokemons,
-			pokemon: pokemon
+			pokemon
 		});
 	};
 };

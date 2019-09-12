@@ -11,7 +11,6 @@ import Tile from './Tile';
 import TileFavourite from './TileFavourite';
 
 class Board extends Component {
-
 	componentDidMount() {
 		this.props.getPokemons();
 	}
@@ -23,33 +22,19 @@ class Board extends Component {
 				{this.props.view === 1 && this.props.pokemons && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}
-					{this.props.pokemons.length < 20 && <h1>Loading...</h1>}
+					{!this.props.pokemons.length && <h1>Loading...</h1>}
 					{this.props.view === 1 &&
 						this.props.pokemons &&
 						this.props.pokemons.map((pokemon) => (
-							<Tile
-								likedPokemons={this.props.likedPokemons}
-								key={pokemon.url}
-								data={pokemon}
-								addFavouritePokemon={this.addFavouritePokemon}
-								removeFavouritePokemon={this.removeFavouritePokemon}
-							/>
+							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
 						))}
 					{/* Page Favoris */}
 					{this.props.view === 2 &&
 						this.props.likedPokemons &&
-						this.props.likedPokemons.map((pokemon) => (
-							<TileFavourite
-								likedPokemons={this.props.likedPokemons}
-								key={pokemon.name}
-								data={pokemon}
-								addFavouritePokemon={this.addFavouritePokemon}
-								removeFavouritePokemon={this.removeFavouritePokemon}
-							/>
-						))}
+						this.props.likedPokemons.map((pokemon) => <TileFavourite key={pokemon.name} data={pokemon} />)}
 					{/* Page Favoris si l'utilisateur n'a pas encore mis de Pokemon en favori */}
 					{this.props.view === 2 &&
-					this.props.likedPokemons.length === 0 && (
+					!this.props.likedPokemons.length && (
 						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
 					)}
 				</div>

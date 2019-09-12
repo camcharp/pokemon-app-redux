@@ -53,6 +53,7 @@
 	position: relative;
 	margin: 1%;
 	padding: 3px;
+	outline: none;
 }
 
 .card:hover {

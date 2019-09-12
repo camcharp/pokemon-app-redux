@@ -35,6 +35,7 @@ class Pagination extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		pokemons: state.pokemons,
 		previous: state.previous,
 		next: state.next
 	};

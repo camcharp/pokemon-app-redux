@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
+// redux
+import { connect } from 'react-redux';
 import { getNewPokemons } from '../actions/actions';
 
 class Pagination extends Component {
@@ -34,8 +35,6 @@ class Pagination extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		pokemons: state.pokemons,
-		likedPokemons: state.likedPokemons,
 		previous: state.previous,
 		next: state.next
 	};

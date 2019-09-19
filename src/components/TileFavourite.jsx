@@ -13,10 +13,9 @@ class TileFavourite extends Component {
 			liked: true,
 			cardClasses: [ 'card' ]
 		};
-		this.flipCard = this.flipCard.bind(this);
 	}
 
-	flipCard() {
+	flipCard = () => {
 		this.setState({ frontCard: !this.state.frontCard });
 		if (this.state.frontCard === true) this.setState({ cardClasses: [ 'card', 'flipped' ] });
 		else this.setState({ cardClasses: [ 'card' ] });

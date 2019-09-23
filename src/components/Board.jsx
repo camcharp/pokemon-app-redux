@@ -7,6 +7,7 @@ import { getPokemons } from '../actions/actions';
 // components
 import Header from './Header';
 import Pagination from './Pagination';
+import SearchBar from './SearchBar';
 import Tile from './Tile';
 import TileFavourite from './TileFavourite';
 
@@ -20,6 +21,7 @@ class Board extends Component {
 			<div className="page-wrapper">
 				<Header />
 				{this.props.view === 1 && this.props.pokemons && <Pagination />}
+				<SearchBar />
 				<div className="big-container">
 					{/* Page Pokemons */}
 					{!this.props.pokemons.length && <h1>Loading...</h1>}

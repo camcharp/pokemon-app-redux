@@ -39,6 +39,11 @@ const rootReducer = (state = initState, action) => {
 				...state,
 				view: 2
 			};
+		case 'SEARCH_POKEMON':
+			return {
+				...state,
+				searchField: action.searchField
+			};
 		default:
 			return state;
 	}

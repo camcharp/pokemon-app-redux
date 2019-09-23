@@ -17,6 +17,7 @@ class Board extends Component {
 	}
 
 	render() {
+		const filteredPokemons = this.props.pokemons.filter((pokemon) => pokemon.name.includes(this.props.searchField));
 		return (
 			<div className="page-wrapper">
 				<Header />
@@ -27,6 +28,13 @@ class Board extends Component {
 					{!this.props.pokemons.length && <h1>Loading...</h1>}
 					{this.props.view === 1 &&
 						this.props.pokemons &&
+						this.props.searchField &&
+						filteredPokemons.map((pokemon) => (
+							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
+						))}
+					{this.props.view === 1 &&
+						this.props.pokemons &&
+						!this.props.searchField &&
 						this.props.pokemons.map((pokemon) => (
 							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
 						))}
@@ -50,7 +58,8 @@ const mapStateToProps = (state) => {
 	return {
 		pokemons: state.pokemons,
 		likedPokemons: state.likedPokemons,
-		view: state.view
+		view: state.view,
+		searchField: state.searchField
 	};
 };
 

@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { searchPokemon } from '../actions/actions';
 
 class SearchBar extends Component {
-
-    handleChange = (evt) => {
+	handleChange = (evt) => {
 		this.props.searchPokemon(evt.target.value);
 	};
 
@@ -15,7 +14,7 @@ class SearchBar extends Component {
 			<div>
 				<div className="SearchBar">
 					<p>Search</p>
-					<input type="text" onChange={this.handleChange} />
+					<input type="text" onChange={this.handleChange} placeholder="type a pokemon name" />
 				</div>
 			</div>
 		);

@@ -10,6 +10,12 @@ export const getPokemons = () => {
 				next: res.data.next,
 				previous: res.data.previous
 			});
+			axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=964').then((res) => {
+				dispatch({
+					type: 'FETCH_ALL_POKEMONS',
+					allPokemons: res.data.results
+				});
+			});
 		});
 	};
 };
@@ -72,7 +78,7 @@ export const goToPageFavourites = () => {
 // chercher un Pokemon
 export const searchPokemon = (input) => {
 	return (dispatch) => {
-		console.log(input)
+		console.log(input);
 		dispatch({
 			type: 'SEARCH_POKEMON',
 			searchField: input

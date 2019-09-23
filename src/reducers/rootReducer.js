@@ -13,6 +13,11 @@ const rootReducer = (state = initState, action) => {
 				next: action.next,
 				previous: action.previous
 			};
+		case 'FETCH_ALL_POKEMONS':
+			return {
+				...state,
+				allPokemons: action.allPokemons
+			};
 		case 'FETCH_NEW_POKEMONS':
 			return {
 				...state,

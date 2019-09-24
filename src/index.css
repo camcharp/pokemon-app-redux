@@ -163,7 +163,7 @@ button:focus {
 #search-container {
 	width: 80%;
 	margin: 0 auto;
-	padding: 5% 0 0;
+	padding: 3% 0;
 	display: flex;
 	justify-content: center;
 }

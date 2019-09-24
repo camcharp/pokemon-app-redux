@@ -23,16 +23,15 @@ class Board extends Component {
 					pokemon.name.includes(this.props.searchField)
 				))
 			: (filteredPokemons = []);
-
+		if (this.props.searchField) console.log(this.props.searchField.length);
 		return (
 			<div className="page-wrapper">
 				<Header />
 				<SearchBar />
-				{this.props.view === 1 && this.props.pokemons && !this.props.searchField && <Pagination />}
-				{/* <button onClick={this.props.getPokemons}>Reinitialize search</button> */}
+				{this.props.view === 1 && this.props.pokemons && this.props.searchField.length === 0 && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}
-					{!this.props.pokemons.length && <h1>Loading...</h1>}
+					{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
 					{/* Page Pokemons quand l'utilisateur tape dans la SearchBar */}
 					{this.props.view === 1 &&
 						this.props.pokemons &&
@@ -64,13 +63,8 @@ class Board extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		pokemons: state.pokemons,
-		likedPokemons: state.likedPokemons,
-		allPokemons: state.allPokemons,
-		view: state.view,
-		searchField: state.searchField
-	};
+	const { pokemons, likedPokemons, allPokemons, view, searchField } = state;
+	return { pokemons, likedPokemons, allPokemons, view, searchField };
 };
 
 const mapDispatchToProps = (dispatch) => {

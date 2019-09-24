@@ -159,6 +159,19 @@ button:focus {
 	outline: 0;
 }
 
+/*           SEARCHBAR           */
+#search-container {
+	width: 80%;
+	margin: 0 auto;
+	padding: 5% 0 0;
+	display: flex;
+	justify-content: center;
+}
+
+.searchBar input {
+	width: 250px;
+}
+
 /*           HEADER              */
 .header {
 	background-color: indianred;

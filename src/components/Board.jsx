@@ -27,8 +27,9 @@ class Board extends Component {
 		return (
 			<div className="page-wrapper">
 				<Header />
-				{this.props.view === 1 && this.props.pokemons && <Pagination />}
 				<SearchBar />
+				{this.props.view === 1 && this.props.pokemons && !this.props.searchField && <Pagination />}
+				{/* <button onClick={this.props.getPokemons}>Reinitialize search</button> */}
 				<div className="big-container">
 					{/* Page Pokemons */}
 					{!this.props.pokemons.length && <h1>Loading...</h1>}

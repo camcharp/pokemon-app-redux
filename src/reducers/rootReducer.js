@@ -11,7 +11,8 @@ const rootReducer = (state = initState, action) => {
 				...state,
 				pokemons: action.pokemons,
 				next: action.next,
-				previous: action.previous
+				previous: action.previous,
+				searchField: null
 			};
 		case 'FETCH_ALL_POKEMONS':
 			return {
@@ -47,7 +48,9 @@ const rootReducer = (state = initState, action) => {
 		case 'SEARCH_POKEMON':
 			return {
 				...state,
-				searchField: action.searchField
+				searchField: action.searchField,
+				next: null,
+				previous: null
 			};
 		default:
 			return state;

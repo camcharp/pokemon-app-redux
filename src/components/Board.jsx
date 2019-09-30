@@ -43,7 +43,7 @@ class Board extends Component {
 		return (
 			<div className="page-wrapper">
 				<Header />
-				<SearchBar />
+				{this.props.view === 1 && <SearchBar />}
 				{this.props.view === 1 && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}

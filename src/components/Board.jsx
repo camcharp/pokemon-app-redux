@@ -71,6 +71,7 @@ class Board extends Component {
 						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
 					)}
 				</div>
+				{this.props.view === 1 && <Pagination />}
 			</div>
 		);
 	}

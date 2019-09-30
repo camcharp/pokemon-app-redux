@@ -80,7 +80,6 @@ export const goToPageFavourites = () => {
 // chercher un Pokemon
 export const searchPokemon = (input) => {
 	return (dispatch) => {
-		console.log(input);
 		dispatch({
 			type: 'SEARCH_POKEMON',
 			searchField: input

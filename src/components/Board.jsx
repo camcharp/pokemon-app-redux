@@ -12,30 +12,48 @@ import Tile from './Tile';
 import TileFavourite from './TileFavourite';
 
 class Board extends Component {
+	_isMounted = false;
+
 	componentDidMount() {
+		this._isMounted = true;
 		this.props.getPokemons();
+		console.log('didmount');
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+		console.log('unmount');
 	}
 
 	render() {
+		// console.log(!this.props.searchField || /^\s*$/.test(this.props.searchField));
+
 		let filteredPokemons = [];
 		this.props.allPokemons
 			? (filteredPokemons = this.props.allPokemons.filter((pokemon) =>
 					pokemon.name.includes(this.props.searchField)
 				))
 			: (filteredPokemons = []);
-		if (this.props.searchField) console.log(this.props.searchField.length);
+		console.log(filteredPokemons);
+
+		let pagination;
+		if (!this.props.searchField.length || !this.props.searchField.trim()) {
+			pagination = <Pagination />;
+		} else {
+			pagination = <h1>lalala</h1>;
+		}
+
 		return (
 			<div className="page-wrapper">
 				<Header />
 				<SearchBar />
-				{this.props.view === 1 && this.props.pokemons && this.props.searchField.length === 0 && <Pagination />}
+				{pagination}
 				<div className="big-container">
 					{/* Page Pokemons */}
 					{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
 					{/* Page Pokemons quand l'utilisateur tape dans la SearchBar */}
-					{this.props.view === 1 &&
-						this.props.pokemons &&
-						this.props.searchField &&
+					{this.props.searchField &&
+						this._isMounted &&
 						filteredPokemons.map((pokemon) => (
 							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
 						))}

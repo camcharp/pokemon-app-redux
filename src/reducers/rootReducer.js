@@ -1,7 +1,8 @@
 const initState = {
 	pokemons: [],
 	likedPokemons: [],
-	view: 1
+	view: 1,
+	searchField: ""
 };
 
 const rootReducer = (state = initState, action) => {
@@ -12,7 +13,6 @@ const rootReducer = (state = initState, action) => {
 				pokemons: action.pokemons,
 				next: action.next,
 				previous: action.previous,
-				searchField: null
 			};
 		case 'FETCH_ALL_POKEMONS':
 			return {

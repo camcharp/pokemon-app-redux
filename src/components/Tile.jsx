@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 // redux
 import { connect } from 'react-redux';
 import { likePokemon, dislikePokemon } from '../actions/actions';
+
+// axios
+import axios from 'axios';
 
 class Tile extends Component {
 	constructor(props) {

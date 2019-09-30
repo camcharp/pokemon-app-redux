@@ -11,7 +11,7 @@ class SearchBar extends Component {
 
 	handleChange = (evt) => {
 		let isEmpty = this.isStringEmpty(evt.target.value);
-		console.log('lala' + isEmpty);
+		console.log('lala ' + isEmpty);
 		this.props.searchPokemon(evt.target.value);
 	};
 

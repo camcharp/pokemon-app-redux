@@ -17,12 +17,10 @@ class Board extends Component {
 	componentDidMount() {
 		this._isMounted = true;
 		this.props.getPokemons();
-		console.log('didmount');
 	}
 
 	componentWillUnmount() {
 		this._isMounted = false;
-		console.log('unmount');
 	}
 
 	render() {
@@ -34,20 +32,19 @@ class Board extends Component {
 					pokemon.name.includes(this.props.searchField)
 				))
 			: (filteredPokemons = []);
-		console.log(filteredPokemons);
 
-		let pagination;
-		if (!this.props.searchField.length || !this.props.searchField.trim()) {
-			pagination = <Pagination />;
-		} else {
-			pagination = <h1>lalala</h1>;
-		}
+		// let pagination;
+		// if (!this.props.searchField.length || !this.props.searchField.trim()) {
+		// 	pagination = <Pagination />;
+		// } else {
+		// 	pagination = <h1>researching...</h1>;
+		// }
 
 		return (
 			<div className="page-wrapper">
 				<Header />
 				<SearchBar />
-				{pagination}
+				{this.props.view === 1 && <Pagination />}
 				<div className="big-container">
 					{/* Page Pokemons */}
 					{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
@@ -74,7 +71,6 @@ class Board extends Component {
 						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
 					)}
 				</div>
-				{this.props.view === 1 && <Pagination />}
 			</div>
 		);
 	}

@@ -4,45 +4,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getNewPokemons } from '../actions/actions';
 
-class Pagination extends Component {
+class Pagination2 extends Component {
 	render() {
 		return (
-			<React.Fragment>
-				<div className="center">
-					<div className="pagination">
-						{this.props.previous ? (
-							<button
-								className="pagination-btn previous"
-								onClick={() => this.props.getNewPokemons(this.props.previous)}
-							>
-								&laquo; Previous Pokemons
-							</button>
-						) : null}
-						{this.props.next ? (
-							<button
-								className="pagination-btn next"
-								onClick={() => this.props.getNewPokemons(this.props.next)}
-							>
-								Next Pokemons &raquo;
-							</button>
-						) : null}
-					</div>
+			<div className="center">
+				<div className="pagination">
+					{!this.props.searchField && this.props.view === 1 && this.props.previous ? (
+						<button
+							className="pagination-btn previous"
+							onClick={() => this.props.getNewPokemons(this.props.previous)}
+						>
+							&laquo; Previous Pokemons
+						</button>
+					) : null}
+					{!this.props.searchField && this.props.view === 1 && this.props.next ? (
+						<button
+							className="pagination-btn next"
+							onClick={() => this.props.getNewPokemons(this.props.next)}
+						>
+							Next Pokemons &raquo;
+						</button>
+					) : null}
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
-	return {
-		pokemons: state.pokemons,
-		previous: state.previous,
-		next: state.next
-	};
+	const { pokemons, previous, next, searchField, view } = state;
+	return { pokemons, previous, next, searchField, view };
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return { getNewPokemons: (url) => dispatch(getNewPokemons(url)) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination2);

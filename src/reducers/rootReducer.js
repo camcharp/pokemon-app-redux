@@ -49,8 +49,6 @@ const rootReducer = (state = initState, action) => {
 			return {
 				...state,
 				searchField: action.searchField,
-				next: null,
-				previous: null
 			};
 		default:
 			return state;

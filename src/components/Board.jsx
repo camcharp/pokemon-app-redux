@@ -41,38 +41,42 @@ class Board extends Component {
 		// }
 
 		return (
-			<div className="page-wrapper">
+			<React.Fragment>
+				<div className="page-wrapper">
 				<Header />
-				{this.props.view === 1 && <SearchBar />}
-				{this.props.view === 1 && <Pagination />}
-				<div className="big-container">
-					{/* Page Pokemons */}
-					{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
-					{/* Page Pokemons quand l'utilisateur tape dans la SearchBar */}
-					{this.props.searchField &&
-						this._isMounted &&
-						filteredPokemons.map((pokemon) => (
-							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
-						))}
-					{/* Page Pokemons sans recherche dans la SearchBar */}
-					{this.props.view === 1 &&
-						this.props.pokemons &&
-						!this.props.searchField &&
-						this.props.pokemons.map((pokemon) => (
-							<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
-						))}
-					{/* Page Favoris */}
-					{this.props.view === 2 &&
-						this.props.likedPokemons &&
-						this.props.likedPokemons.map((pokemon) => <TileFavourite key={pokemon.name} data={pokemon} />)}
-					{/* Page Favoris si l'utilisateur n'a pas encore mis de Pokemon en favori */}
-					{this.props.view === 2 &&
-					!this.props.likedPokemons.length && (
-						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
-					)}
+					{this.props.view === 1 && <SearchBar />}
+					{this.props.view === 1 && <Pagination />}
+					<div className="big-container">
+						{/* Page Pokemons */}
+						{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
+						{/* Page Pokemons quand l'utilisateur tape dans la SearchBar */}
+						{this.props.searchField &&
+							this._isMounted &&
+							filteredPokemons.map((pokemon) => (
+								<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
+							))}
+						{/* Page Pokemons sans recherche dans la SearchBar */}
+						{this.props.view === 1 &&
+							this.props.pokemons &&
+							!this.props.searchField &&
+							this.props.pokemons.map((pokemon) => (
+								<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
+							))}
+						{/* Page Favoris */}
+						{this.props.view === 2 &&
+							this.props.likedPokemons &&
+							this.props.likedPokemons.map((pokemon) => (
+								<TileFavourite key={pokemon.name} data={pokemon} />
+							))}
+						{/* Page Favoris si l'utilisateur n'a pas encore mis de Pokemon en favori */}
+						{this.props.view === 2 &&
+						!this.props.likedPokemons.length && (
+							<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
+						)}
+					</div>
+					{this.props.view === 1 && <Pagination />}
 				</div>
-				{this.props.view === 1 && <Pagination />}
-			</div>
+			</React.Fragment>
 		);
 	}
 }

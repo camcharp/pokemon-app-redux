@@ -1,16 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 // redux
 import { connect } from 'react-redux';
 
+// components
+import Header from '../components/Header';
+import Tile from '../components/Tile';
+
 class PageFavourites extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+	render() {
+		return (
+			<React.Fragment>
+				<Header />
+				<div id="liked-pokemons-container">
+					{this.props.likedPokemons &&
+						this.props.likedPokemons.map((pokemon) => <Tile key={pokemon.name} data={pokemon} />)}
+					{!this.props.likedPokemons.length && (
+						<h1 className="no-fav-yet">Sorry, you have no favourite Pokemon yet.</h1>
+					)}
+				</div>
+			</React.Fragment>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
@@ -19,9 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		
-	};
+	return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageFavourites);

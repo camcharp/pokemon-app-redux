@@ -135,6 +135,12 @@
 .no-fav-yet {
 	text-align: center;
 }
+
+/*                 FAVOURITES PAGE                 */
+#liked-pokemons-container {
+	padding-top: 100px;
+}
+
 /*                 PAGINATION                      */
 
 .center {

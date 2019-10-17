@@ -5,13 +5,8 @@ import { connect } from 'react-redux';
 import { searchPokemon } from '../actions/actions';
 
 class SearchBar extends Component {
-	isStringEmpty = (str) => {
-		return str.length === 0 || !str.trim();
-	};
 
 	handleChange = (evt) => {
-		let isEmpty = this.isStringEmpty(evt.target.value);
-		console.log('lala ' + isEmpty);
 		this.props.searchPokemon(evt.target.value);
 	};
 

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // premier appel à l'API
 export const getPokemons = () => {
-	console.log('lalala');
 	return (dispatch) => {
 		axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20').then((res) => {
 			dispatch({
@@ -10,7 +9,7 @@ export const getPokemons = () => {
 				pokemons: res.data.results,
 				next: res.data.next,
 				previous: res.data.previous,
-				searchField: ""
+				searchField: ''
 			});
 			axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=964').then((res) => {
 				dispatch({

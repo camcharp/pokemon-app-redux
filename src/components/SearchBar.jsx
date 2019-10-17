@@ -18,7 +18,7 @@ class SearchBar extends Component {
 					<input
 						type="text"
 						onChange={this.handleChange}
-						placeholder="type a pokemon name"
+						placeholder="Type a Pokemon name"
 						value={this.props.searchField}
 					/>
 				</div>

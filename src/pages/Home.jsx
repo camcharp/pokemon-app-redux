@@ -24,21 +24,12 @@ class Board extends Component {
 	}
 
 	render() {
-		// console.log(!this.props.searchField || /^\s*$/.test(this.props.searchField));
-
 		let filteredPokemons = [];
 		this.props.allPokemons
 			? (filteredPokemons = this.props.allPokemons.filter((pokemon) =>
 					pokemon.name.includes(this.props.searchField)
 				))
 			: (filteredPokemons = []);
-
-		// let pagination;
-		// if (!this.props.searchField.length || !this.props.searchField.trim()) {
-		// 	pagination = <Pagination />;
-		// } else {
-		// 	pagination = <h1>researching...</h1>;
-		// }
 
 		return (
 			<React.Fragment>

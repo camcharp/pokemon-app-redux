@@ -56,26 +56,6 @@ export const dislikePokemon = (pokemon) => {
 	};
 };
 
-// aller à la page pokemons
-export const goToPagePokemons = () => {
-	return (dispatch) => {
-		dispatch({
-			type: 'GO_TO_POKEMONS',
-			view: 1
-		});
-	};
-};
-
-// aller à la page favoris
-export const goToPageFavourites = () => {
-	return (dispatch) => {
-		dispatch({
-			type: 'GO_TO_FAVOURITES',
-			view: 2
-		});
-	};
-};
-
 // chercher un Pokemon
 export const searchPokemon = (input) => {
 	return (dispatch) => {

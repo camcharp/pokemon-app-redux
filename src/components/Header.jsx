@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-// redux
-import { connect } from 'react-redux';
-import { goToPagePokemons, goToPageFavourites } from '../actions/actions';
-
-class Header extends Component {
+export default class Header extends Component {
 	render() {
 		return (
 			<div className="header">
@@ -19,18 +15,3 @@ class Header extends Component {
 		);
 	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		view: state.view
-	};
-};
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		goToPagePokemons: () => dispatch(goToPagePokemons()),
-		goToPageFavourites: () => dispatch(goToPageFavourites())
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);

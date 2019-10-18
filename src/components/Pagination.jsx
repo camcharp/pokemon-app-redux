@@ -9,7 +9,7 @@ class Pagination2 extends Component {
 		return (
 			<div className="center">
 				<div className="pagination">
-					{!this.props.searchField && this.props.view === 1 && this.props.previous ? (
+					{!this.props.searchField && this.props.previous ? (
 						<button
 							className="pagination-btn previous"
 							onClick={() => this.props.getNewPokemons(this.props.previous)}
@@ -17,7 +17,7 @@ class Pagination2 extends Component {
 							&laquo; Previous Pokemons
 						</button>
 					) : null}
-					{!this.props.searchField && this.props.view === 1 && this.props.next ? (
+					{!this.props.searchField && this.props.next ? (
 						<button
 							className="pagination-btn next"
 							onClick={() => this.props.getNewPokemons(this.props.next)}
@@ -32,8 +32,8 @@ class Pagination2 extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { pokemons, previous, next, searchField, view } = state;
-	return { pokemons, previous, next, searchField, view };
+	const { pokemons, previous, next, searchField } = state;
+	return { pokemons, previous, next, searchField };
 };
 
 const mapDispatchToProps = (dispatch) => {

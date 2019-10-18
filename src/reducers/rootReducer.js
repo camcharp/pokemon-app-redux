@@ -1,7 +1,6 @@
 const initState = {
 	pokemons: [],
 	likedPokemons: [],
-	view: 1,
 	searchField: ""
 };
 
@@ -34,16 +33,6 @@ const rootReducer = (state = initState, action) => {
 			return {
 				...state,
 				likedPokemons: state.likedPokemons.filter((pokemon) => pokemon.name !== action.pokemon.name)
-			};
-		case 'GO_TO_POKEMONS':
-			return {
-				...state,
-				view: 1
-			};
-		case 'GO_TO_FAVOURITES':
-			return {
-				...state,
-				view: 2
 			};
 		case 'SEARCH_POKEMON':
 			return {

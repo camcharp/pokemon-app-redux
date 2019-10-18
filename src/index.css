@@ -1,5 +1,3 @@
-
-
 * {
 	margin: 0;
 	padding: 0;
@@ -34,7 +32,7 @@
 	flex-direction: row;
 	justify-content: center;
 	flex-wrap: wrap;
-	padding-top:40px;
+	padding-top: 40px;
 }
 
 .card-plus-heart {
@@ -140,9 +138,9 @@
 #liked-pokemons-container {
 	padding-top: 130px;
 	display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 /*                 PAGINATION                      */
@@ -189,7 +187,7 @@ button:focus {
 	z-index: 100;
 	background-color: indianred;
 	width: 100%;
-	font-size: 1rem;
+	font-size: 1.5rem;
 	padding: 1%;
 	margin-bottom: 5%;
 	display: flex;
@@ -200,12 +198,17 @@ button:focus {
 
 @media (max-width: 640px) {
 	.header {
-		font-size: 0.8rem;
+		font-size: 1rem;
 	}
 }
 
-.header h2 {
+.navlink {
 	color: white;
-	width: 100%;
 	padding: 12px 10px;
+}
+
+.navlink-active,
+.navlink:hover {
+	text-decoration: underline white;
+	text-underline-position: under;
 }

@@ -9,11 +9,11 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="header">
-				<NavLink to="/" onClick={this.props.goToPagePokemons}>
-					<h2>Pokemons</h2>
+				<NavLink exact to="/" className="navlink" activeClassName="navlink-active">
+					Pokemons
 				</NavLink>
-				<NavLink to="/fav" onClick={this.props.goToPageFavourites}>
-					<h2>Your favourites</h2>
+				<NavLink to="/fav" className="navlink" activeClassName="navlink-active">
+					Your favourites
 				</NavLink>
 			</div>
 		);

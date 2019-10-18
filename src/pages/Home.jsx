@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 import SearchBar from '../components/SearchBar';
 import Tile from '../components/Tile';
-import TileFavourite from '../components/TileFavourite';
+// import TileFavourite from '../components/TileFavourite';
 
 class Board extends Component {
 	_isMounted = false;

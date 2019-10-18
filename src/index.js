@@ -11,9 +11,8 @@ import rootReducer from './reducers/rootReducer';
 
 // components
 import App from './App';
-// import Board from './components/Board';
 import Home from './pages/Home';
-import PageFavourites from './pages/PageFavourites';
+import Favourites from './pages/Favourites';
 
 // others
 import * as serviceWorker from './serviceWorker';
@@ -28,7 +27,7 @@ ReactDOM.render(
 		<BrowserRouter>
 			<App />
 			<Route exact path="/" component={Home} />
-			<Route exact path="/fav" component={PageFavourites} />
+			<Route exact path="/fav" component={Favourites} />
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById('root')

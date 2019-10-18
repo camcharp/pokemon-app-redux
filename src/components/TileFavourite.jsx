@@ -53,7 +53,9 @@ class TileFavourite extends Component {
 					pokemon.moves &&
 					this.state.frontCard && (
 						<div className="face front">
-							<img src={pokemon.sprites.front_default} alt="pokemon-sprite" />
+							{pokemon.sprites.front_default ? (
+										<img src={pokemon.sprites.front_default} className='icon' alt="pokemon-sprite-front" />
+									) : <img src={'pokeball.png'} className='icon-default icon-small' alt="pokemon-sprite-front" />}
 							<h1 className="pokemon-name">{pokemon.name}</h1>
 							<p className="pokemon-type">{pokemon.types[0].type.name} </p>
 							<div className="pokemon-stats" />

@@ -26,6 +26,14 @@
 	-ms-transform: rotate(9deg);
 }
 
+.flex-container-column{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding:
+}
+
 /*                 POKEMON CARD                       */
 .big-container {
 	display: flex;
@@ -85,9 +93,12 @@
 	height: 200px;
 }
 
-.icon-default {
+.icon-small {
 	width: 100px;
 	height: 100px;
+}
+
+.icon-default {
 	padding: 20%;
 }
 
@@ -119,11 +130,6 @@
 	font-size: 1rem;
 }
 
-.face h1 {
-	padding-top: 5%;
-	font-size: 1.7rem;
-}
-
 .img-back {
 	display: flex;
 	flex-direction: row;
@@ -141,7 +147,7 @@
 }
 
 /*                 FAVOURITES PAGE                 */
-#liked-pokemons-container {
+.liked-pokemons-container {
 	padding-top: 130px;
 	display: flex;
 	flex-direction: row;

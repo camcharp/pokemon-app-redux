@@ -12,7 +12,7 @@ class PageFavourites extends Component {
 		return (
 			<React.Fragment>
 				<Header />
-				<div id="liked-pokemons-container">
+				<div class="liked-pokemons-container">
 					{this.props.likedPokemons &&
 						this.props.likedPokemons.map((pokemon) => <Tile key={pokemon.name} data={pokemon} />)}
 					{!this.props.likedPokemons.length && (

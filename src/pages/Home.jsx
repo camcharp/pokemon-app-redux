@@ -34,11 +34,16 @@ class Board extends Component {
 		return (
 			<React.Fragment>
 				<div className="page-wrapper">
-				<Header />
+					<Header />
 					<SearchBar />
-					<Pagination/>
+					<Pagination />
 					<div className="big-container">
-						{!this.props.pokemons.length && <h1>Chasing the Pokemons, please wait...</h1>}
+						{!this.props.pokemons.length && (
+							<div className="flex-container-column">
+								<img src={'pokemon-go.png'} className="icon-small" alt="pokemon-sprite-front" />
+								<h1>Chasing the Pokemons, please wait...</h1>
+							</div>
+						)}
 						{/* Quand l'utilisateur tape dans la SearchBar */}
 						{this.props.searchField &&
 							this._isMounted &&
@@ -50,7 +55,7 @@ class Board extends Component {
 							!this.props.searchField &&
 							this.props.pokemons.map((pokemon) => (
 								<Tile likedPokemons={this.props.likedPokemons} key={pokemon.url} data={pokemon} />
-							))}						
+							))}
 					</div>
 					<Pagination />
 				</div>

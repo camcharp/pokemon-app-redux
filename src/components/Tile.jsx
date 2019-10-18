@@ -139,7 +139,9 @@ class Tile extends Component {
 					</div>
 				) : (
 					<div className="card-plus-heart">
-						<p className="card">Wild Pokemon approaching...</p>
+						<p className="card">
+							<i className="fa fa-spinner" id="loader" />
+						</p>
 					</div>
 				)}
 			</div>

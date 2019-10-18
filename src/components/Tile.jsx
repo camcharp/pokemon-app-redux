@@ -72,58 +72,76 @@ class Tile extends Component {
 		let cardClasses = this.state.cardClasses.join(' ');
 		return (
 			<div>
-				<div className="card-plus-heart">
-					{this.state.liked ? ( // coeur différent si le Pokemon est en favori ou non
-						<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
-					) : (
-						<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
-					)}
-
-					<div className={cardClasses} onClick={this.flipCard}>
-						{pokemon.sprites && // vérifier que toutes les infos soient chargées
-						pokemon.types &&
-						pokemon.stats &&
-						pokemon.moves ? (
-							this.state.frontCard && (
-								<div className="face front">
-									{pokemon.sprites.front_default ? (
-										<img src={pokemon.sprites.front_default} className='icon' alt="pokemon-sprite-front" />
-									) : <img src={'pokeball.png'} className='icon-default icon-small' alt="pokemon-sprite-front" />}
+				{pokemon.sprites && // vérifier que toutes les infos soient chargées
+				pokemon.types &&
+				pokemon.stats &&
+				pokemon.moves ? (
+					<div className="card-plus-heart">
+						{this.state.liked ? ( // coeur différent si le Pokemon est en favori ou non
+							<i className="fa fa-heart fa-sm" onClick={this.handleFavourite} />
+						) : (
+							<i className="fa fa-heart-o fa-sm" onClick={this.handleFavourite} />
+						)}
+						<div className={cardClasses} onClick={this.flipCard}>
+							{pokemon.sprites && // vérifier que toutes les infos soient chargées
+							pokemon.types &&
+							pokemon.stats &&
+							pokemon.moves ? (
+								this.state.frontCard && (
+									<div className="face front">
+										{pokemon.sprites.front_default ? (
+											<img
+												src={pokemon.sprites.front_default}
+												className="icon"
+												alt="pokemon-sprite-front"
+											/>
+										) : (
+											<img
+												src={'pokeball.svg'}
+												className="icon-default icon-small"
+												alt="pokemon-sprite-front"
+											/>
+										)}
+										<h1 className="pokemon-name">{pokemon.name}</h1>
+										<p className="pokemon-type">{pokemon.types[0].type.name} </p>
+										<div className="pokemon-stats" />
+									</div>
+								)
+							) : (
+								<h2>Wild Pokemon {pokemon.name} approching...</h2>
+							)}
+							{/* carte vue de dos */}
+							{!this.state.frontCard && (
+								<div className="face back">
+									<div className="img-back">
+										{pokemon.sprites.front_default ? (
+											<img src={pokemon.sprites.front_default} alt="pokemon-sprite-front" />
+										) : null}
+										{pokemon.sprites.back_default ? (
+											<img src={pokemon.sprites.back_default} alt="pokemon-sprite-back" />
+										) : null}
+									</div>
 									<h1 className="pokemon-name">{pokemon.name}</h1>
 									<p className="pokemon-type">{pokemon.types[0].type.name} </p>
-									<div className="pokemon-stats" />
+									<div className="pokemon-stats">
+										{pokemon.stats.map((stat) => (
+											<div className="stats-name" key={stat.stat.name}>
+												<p>{stat.stat.name}</p> <p className="stats-base">{stat.base_stat}</p>
+											</div>
+										))}
+									</div>
+									<div className="pokemon-move">
+										<p className="move">special move: {pokemon.moves[0].move.name}</p>
+									</div>
 								</div>
-							)
-						) : (
-							<h2>Wild Pokemon {pokemon.name} approching...</h2>
-						)}
-						{/* carte vue de dos */}
-						{!this.state.frontCard && (
-							<div className="face back">
-								<div className="img-back">
-									{pokemon.sprites.front_default ? (
-										<img src={pokemon.sprites.front_default} alt="pokemon-sprite-front" />
-									) : null}
-									{pokemon.sprites.back_default ? (
-										<img src={pokemon.sprites.back_default} alt="pokemon-sprite-back" />
-									) : null}
-								</div>
-								<h1 className="pokemon-name">{pokemon.name}</h1>
-								<p className="pokemon-type">{pokemon.types[0].type.name} </p>
-								<div className="pokemon-stats">
-									{pokemon.stats.map((stat) => (
-										<div className="stats-name" key={stat.stat.name}>
-											<p>{stat.stat.name}</p> <p className="stats-base">{stat.base_stat}</p>
-										</div>
-									))}
-								</div>
-								<div className="pokemon-move">
-									<p className="move">special move: {pokemon.moves[0].move.name}</p>
-								</div>
-							</div>
-						)}
+							)}
+						</div>{' '}
 					</div>
-				</div>
+				) : (
+					<div className="card-plus-heart">
+						<p className="card">Wild Pokemon approaching...</p>
+					</div>
+				)}
 			</div>
 		);
 	}

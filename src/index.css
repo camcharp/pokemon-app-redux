@@ -26,12 +26,11 @@
 	-ms-transform: rotate(9deg);
 }
 
-.flex-container-column{
+.flex-container-column {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding:
 }
 
 /*                 POKEMON CARD                       */
